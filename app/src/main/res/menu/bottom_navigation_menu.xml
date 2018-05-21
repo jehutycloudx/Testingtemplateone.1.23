@@ -3,28 +3,28 @@
 
     <item
         android:id="@+id/ic_new_project"
-        android:icon="@drawable/ic_android_black_14dp"
-        android:title="New Project!"/>
+        android:icon="@drawable/ic_photo_camera_14dp"
+        android:title="@string/new_project"/>
 
     <item
         android:id="@+id/ic_current_listings"
-        android:icon="@drawable/ic_android_black_14dp"
-        android:title="Current Listings"/>
+        android:icon="@drawable/ic_view_listings_14dp"
+        android:title="@string/current_listings"/>
 
     <item
         android:id="@+id/ic_find_contractor"
-        android:icon="@drawable/ic_android_black_14dp"
-        android:title="Find Contractor"/>
+        android:icon="@drawable/ic_person_14dp"
+        android:title="@string/find_contractor"/>
 
     <item
         android:id="@+id/ic_chat"
-        android:icon="@drawable/ic_android_black_14dp"
-        android:title="Chat"/>
+        android:icon="@drawable/ic_message_black_14dp"
+        android:title="@string/chat"/>
 
     <item
         android:id="@+id/ic_settings"
-        android:icon="@drawable/ic_android_black_14dp"
-        android:title="Settings"/>
+        android:icon="@drawable/ic_settings_icon_14dp"
+        android:title="@string/settings"/>
 
 
 
