@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Testingtemplateone</string>
+    <string name="welcome_to_fragment1">Welcome to Fragment1</string>
+    <string name="go_to_fragment1">Go to Fragment1</string>
+    <string name="go_to_fragment2">Go to Fragment2</string>
+    <string name="go_to_fragment3">Go to Fragment3</string>
+    <string name="go_to_second_activity">Go to Second Activity</string>
+    <string name="welcome_to_fragment2">Welcome to Fragment 2</string>
+    <string name="welcome_to_fragment3">Welcome to Fragment 3</string>
+    <string name="this_is_the_second_activity_layout">This is the Second Activity Layout</string>
+
+    <string name="new_project">New Project</string>
+    <string name="current_listings">Listings</string>
+    <string name="find_contractor">Contractors</string>
+    <string name="chat">Chat</string>
+    <string name="settings">Settings</string>
+    <string name="current_settings_placeholder">Current \'Settings\' Placeholder</string>
+    <string name="current_listings_placeholder">Current Listings Placeholder</string>
+    <string name="current_chat_placeholder">Current \'Chat\' Placeholder</string>
+    <string name="current_find_contractors_placeholder">Current \'Find Contractors\' Placeholder</string>
+</resources>
