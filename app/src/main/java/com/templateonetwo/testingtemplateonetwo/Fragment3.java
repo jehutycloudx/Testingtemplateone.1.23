@@ -1,4 +1,4 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class Fragment2 extends android.support.v4.app.Fragment {
-    private static final String Tag = "Fragment2";
+public class Fragment3 extends android.support.v4.app.Fragment {
+    private static final String Tag = "Fragment3";
 
     private Button btnNavFrag1;
     private Button btnNavFrag2;
@@ -26,7 +26,7 @@ public class Fragment2 extends android.support.v4.app.Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-             View view = inflater.inflate(R.layout.fragment2_layout, container, false);
+             View view = inflater.inflate(R.layout.fragment3_layout, container, false);
              btnNavFrag1 = (Button) view.findViewById(R.id.btnNavFrag1); /*must use 'view' for fragments as opposed to not specifying like for normal activity */
              btnNavFrag2 = (Button) view.findViewById(R.id.btnNavFrag2);
              btnNavFrag3 = (Button) view.findViewById(R.id.btnNavFrag3);

@@ -1,4 +1,4 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,21 +10,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Activity_Current_Listings extends AppCompatActivity {
+public class Activity_Chat extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_currentlistings);
+        setContentView(R.layout.layout_chat);
 
-        TextView CL_title = (TextView) findViewById(R.id.activityTitle_Current_Listings);
+        TextView Chat_title = (TextView) findViewById(R.id.activityTitle_Chat);
 
         /*code below is to specifically disable shiftmode on bottom nav bar*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
         BottomNavigationViewHelper.disableShiftMode(bottomNavigationView);
 
-        /*simple code to fix the highlighting of the appropriate bottom nav icon when tapped, menu item index is set to '1' for first icon*/
+        /*simple code to fix the highlighting of the appropriate bottom nav icon when tapped, menu item index is set to '3' for first icon*/
         Menu menu = bottomNavigationView.getMenu();
-        MenuItem menuItem = menu.getItem(1);
+        MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);
 
         /*below you will need to navigate to different areas when the nav buttons are pressed and you
@@ -35,30 +35,29 @@ public class Activity_Current_Listings extends AppCompatActivity {
                 switch (item.getItemId()) {
 
                     case R.id.ic_new_project:
-                        Intent intent0 = new Intent(Activity_Current_Listings.this, MainActivity.class);
+                        Intent intent0 = new Intent(Activity_Chat.this, MainActivity.class);
                         startActivity(intent0);
                         break;
 
                     case R.id.ic_current_listings:
-
+                        Intent intent1 = new Intent(Activity_Chat.this, Activity_Current_Listings.class);
+                        startActivity(intent1);
                         break;
 
 
                     case R.id.ic_find_contractor:
-                        Intent intent2 = new Intent(Activity_Current_Listings.this, Activity_Find_Contractors.class);
+                        Intent intent2 = new Intent(Activity_Chat.this, Activity_Find_Contractors.class);
                         startActivity(intent2);
                         break;
 
 
                     case R.id.ic_chat:
-                        Intent intent3 = new Intent(Activity_Current_Listings.this, Activity_Chat.class);
-                        startActivity(intent3);
 
                         break;
 
 
                     case R.id.ic_settings:
-                        Intent intent4 = new Intent(Activity_Current_Listings.this, Activity_Settings.class);
+                        Intent intent4 = new Intent(Activity_Chat.this, Activity_Settings.class);
                         startActivity(intent4);
 
                         break;
@@ -66,6 +65,6 @@ public class Activity_Current_Listings extends AppCompatActivity {
                 return false;
             }
         });
-
     }
+
 }

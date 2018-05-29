@@ -1,4 +1,4 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -34,7 +34,7 @@ public class SectionsStatePagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) { return mFragmentList.get(position);}
         /*modified return 'null' to return 'mFragmentList.get(pos...)'*/
-        /*we are simply returing the item in question at the position it is in */
+        /*we are simply returning the item in question at the position it is in */
 
     @Override
     public int getCount() { return mFragmentList.size();}

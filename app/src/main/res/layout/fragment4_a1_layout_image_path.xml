@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/welcome_to_fragment_4"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnNavFrag1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/btnNavFrag4"
+        android:layout_marginStart="55dp"
+        android:text="@string/back_to_media_select"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="58dp" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/btnNavFrag1"
+        android:layout_centerHorizontal="false"
+        android:layout_marginTop="0dp"
+        android:id="@+id/btnNavFrag2"
+        android:layout_alignLeft="@id/textTitle"
+        android:text="@string/go_to_fragment2"/>
+
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/btnNavFrag2"
+        android:layout_centerHorizontal="false"
+        android:layout_marginTop="0dp"
+        android:id="@+id/btnNavFrag3"
+        android:text="@string/go_to_fragment3"/>
+
+
+    <Button
+        android:id="@+id/btnNavFrag4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="69dp"
+        android:layout_marginRight="30dp"
+        android:text="@string/go_to_fragment_5"
+        android:layout_alignParentRight="true" />
+
+
+    <Button
+        android:id="@+id/btnNavSecondActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:text="@string/go_to_second_activity" />
+
+
+
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

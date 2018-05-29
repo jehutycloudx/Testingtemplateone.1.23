@@ -1,4 +1,4 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
 import org.junit.Test;
 

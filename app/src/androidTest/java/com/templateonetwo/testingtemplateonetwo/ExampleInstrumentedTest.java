@@ -1,4 +1,4 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

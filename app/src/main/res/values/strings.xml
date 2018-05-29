@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Testingtemplateone</string>
+    <string name="app_name">TestingtemplateOneTwo</string>
     <string name="welcome_to_fragment1">Welcome to Fragment1</string>
     <string name="go_to_fragment1">Go to Fragment1</string>
     <string name="go_to_fragment2">Go to Fragment2</string>
@@ -18,4 +18,16 @@
     <string name="current_listings_placeholder">Current Listings Placeholder</string>
     <string name="current_chat_placeholder">Current \'Chat\' Placeholder</string>
     <string name="current_find_contractors_placeholder">Current \'Find Contractors\' Placeholder</string>
+    <string name="take_video">Take Video</string>
+    <string name="take_image">Take Image</string>
+    <string name="upload_media">Upload Media</string>
+    <string name="Fragement4">Image path one</string>
+    <string name="go_to_fragment_5">go to fragment 5</string>
+    <string name="go_to_fragment_4">Go to Fragment 4a1</string>
+    <string name="welcome_to_fragment_4">Welcome to Fragment 4a1</string>
+    <string name="back_to_media_select">Back</string>
+    <string name="description_field">Description (optional)</string>
+    <string name="project_title_optional">Project Title (optional)</string>
+    <string name="category_optional">Category (optional)</string>
+    <string name="go_to_fragment_4b">Go to Fragment 4b1</string>
 </resources>

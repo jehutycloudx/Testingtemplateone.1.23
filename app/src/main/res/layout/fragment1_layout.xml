@@ -1,56 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorMegaMan"
+    android:orientation="vertical">
 
 
     <TextView
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:textSize="25dp"
-        android:text="@string/welcome_to_fragment1"
         android:layout_marginTop="40dp"
-        android:id="@+id/textTitle"/>
+        android:text="@string/welcome_to_fragment1"
+        android:textSize="24sp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textTitle"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
         android:id="@+id/btnNavFrag1"
-        android:text="@string/go_to_fragment1"/>
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnNavFrag1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnNavFrag2"
+        android:layout_marginTop="91dp"
+        android:text="@string/go_to_fragment1"
+        android:layout_alignLeft="@+id/btnNavFrag2" />
+
+    <Button
         android:id="@+id/btnNavFrag2"
-        android:text="@string/go_to_fragment2"/>
-
-
-    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnNavFrag2"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:id="@+id/btnNavFrag3"
-        android:text="@string/go_to_fragment3"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/btnNavFrag3"
+        android:layout_marginTop="146dp"
+        android:text="@string/go_to_fragment2"
+        android:layout_alignLeft="@+id/btnNavFrag3" />
 
 
     <Button
+        android:id="@+id/btnNavFrag3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="201dp"
+        android:text="@string/go_to_fragment3"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="29dp" />
+
+    <Button
+        android:id="@+id/btnNavFrag4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/btnNavFrag1"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/go_to_fragment_4" />
+
+    <Button
+        android:id="@+id/btnNavFrag4b1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/btnNavFrag4"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="9dp"
+        android:text="To Fragment 4B"/>
+
+
+    <Button
+        android:id="@+id/btnNavSecondActivity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnNavFrag3"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:id="@+id/btnNavSecondActivity"
-        android:text="@string/go_to_second_activity"/>
+        android:text="@string/go_to_second_activity" />
 
+    <Button
+        android:id="@+id/btnCameraVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnNavSecondActivity"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/take_video"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnCameraImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCameraVideo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/take_image"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnMediaUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCameraImage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/upload_media"
+        android:textAllCaps="false" />
 
 
 </RelativeLayout>

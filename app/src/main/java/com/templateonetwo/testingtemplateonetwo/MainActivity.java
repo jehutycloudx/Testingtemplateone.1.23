@@ -1,20 +1,24 @@
-package com.jehutyanubis.testingtemplateone;
+package com.templateonetwo.testingtemplateonetwo;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
+    private static final int REQUEST_CODE_P = 123;
 
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
     private ViewPager mViewPager; /*created in activity main XML all the way at the bottom*/
@@ -29,7 +33,11 @@ public class MainActivity extends AppCompatActivity {
         /* create view pager object above ^^ as that is what we will be referencing*/
 
         mViewPager = (ViewPager) findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        verifyPermissions();
+        /* setupViewPager(mViewPager);   --->this code is removed and replaced with 'verifyPermissions();'
+        above as we want to have the permissions be requested before anything else is setup in app.
+        the vairable mViewPager is still left as is.*/
+
         /* reference the container as this is what we will be swapping the fragments out of*/
         //setup the pager below
 
@@ -91,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Fragment1(), "Fragment1");
         adapter.addFragment(new Fragment2(), "Fragment2");
         adapter.addFragment(new Fragment3(), "Fragment3");
+        adapter.addFragment(new Fragment4_A1(), "Fragment4_A1");
+        adapter.addFragment(new Fragment4_B1(), "Fragment4_B1");
         viewPager.setAdapter(adapter);
     }
 
@@ -99,8 +109,33 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /*Testing git */
+    /*setup permissions*/
+    private void verifyPermissions() {
+        Log.d(TAG, "verify permissions: asking user for permissions");
+        String[] permissions = {
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.CAMERA};
 
+        if (ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[0]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[1]) == PackageManager.PERMISSION_GRANTED
+                && ContextCompat.checkSelfPermission(this.getApplicationContext(),
+                permissions[2]) == PackageManager.PERMISSION_GRANTED) {
+            setupViewPager(mViewPager);   /*I presume mViewPager can go here...just assuming, may need to fix*/
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this, permissions,
+                    REQUEST_CODE_P);
+        } /*above is just taking the result and we will put it in the below,
+        'onRequestPermissionResult...'*/
+    }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+     verifyPermissions();
 
+    }
 }
+
+
