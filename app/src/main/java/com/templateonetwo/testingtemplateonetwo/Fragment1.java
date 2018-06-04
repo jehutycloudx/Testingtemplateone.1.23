@@ -1,27 +1,34 @@
 package com.templateonetwo.testingtemplateonetwo;
 
 import android.app.Activity;
+import android.app.FragmentContainer;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Picture;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.widget.VideoView;
+
+import static android.media.ThumbnailUtils.createVideoThumbnail;
 
 
 public class Fragment1 extends android.support.v4.app.Fragment {
     private static final String Tag = "Fragment1";
 
-    private static final int VIDEO_FILE_REQUEST_CODE = 1111;
+    public static final int VIDEO_FILE_REQUEST_CODE = 1111;
     private static final int CAMERA_FILE_REQUEST_CODE = 2222;
     private static final int PICK_FILE_REQUEST_CODE = 3333;
 
@@ -38,9 +45,9 @@ public class Fragment1 extends android.support.v4.app.Fragment {
     }
 
     OnPhotoSelectedLister mOnPhotoSelectedLister;  //*maybe there is a video version of this*//
-    public static VideoView mVideoview; /*just added this to make code work below */
-
     OnVideoSelectedLister mOnVideoSelectedLister;
+
+    public static VideoView mVideoview; /*just added this to make code work below */
 
 
     private Button btnNavFrag1;
@@ -54,14 +61,36 @@ public class Fragment1 extends android.support.v4.app.Fragment {
     private Button btnMediaUpload;
 
 
+    public Bitmap bitmapimage;
+    public static final String TAG4b2 = "com.templateonetwo.testingtemplateonetwo.fragment4_b2";
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        try {
+            mOnPhotoSelectedLister = (OnPhotoSelectedLister) getTargetFragment();
+            mOnVideoSelectedLister = (OnVideoSelectedLister) getTargetFragment();
+            Log.d(Tag, "Checking2" + mOnPhotoSelectedLister + mOnVideoSelectedLister);
+
+        } catch (ClassCastException e) {
+            Log.e(Tag, "OnAttach: ClassCastException: " + e.getMessage());
+    }
+
+    }
+
     /*below is auto-generate code from right clicking and inserting 'OnCreateView', this method
-    is specific to Fragments vs. 'OnCreate' which is just for activities.
-    You also have to create View objects and return at the bottom of onCreateView
-     Deleted the 'super return...' code line */
+        is specific to Fragments vs. 'OnCreate' which is just for activities.
+        You also have to create View objects and return at the bottom of onCreateView
+         Deleted the 'super return...' code line */
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment1_layout, container, false);
+        final View view2 = inflater.inflate(R.layout.fragment2_layout, container, false);
+        View view3 = inflater.inflate(R.layout.fragment3_layout, container, false);
+        View view4a1 = inflater.inflate(R.layout.fragment4_a1_layout_image_path, container, false);
+        View view4b1 = inflater.inflate(R.layout.fragment4_b1_layout_video_path, container, false);
         btnNavFrag1 = (Button) view.findViewById(R.id.btnNavFrag1); /*must use 'view' for fragments as opposed to not specifying like for normal activity */
         btnNavFrag2 = (Button) view.findViewById(R.id.btnNavFrag2);
         btnNavFrag3 = (Button) view.findViewById(R.id.btnNavFrag3);
@@ -71,6 +100,7 @@ public class Fragment1 extends android.support.v4.app.Fragment {
         btnCameraVideo = (Button) view.findViewById(R.id.btnCameraVideo);
         btnCameraImage = (Button) view.findViewById(R.id.btnCameraImage);
         btnMediaUpload = (Button) view.findViewById(R.id.btnMediaUpload);
+
 
         Log.d(Tag, "onCreateView: started.");
 
@@ -115,7 +145,7 @@ public class Fragment1 extends android.support.v4.app.Fragment {
 
         btnNavFrag4b.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View view4) {
                 Toast.makeText(getActivity(), "Going to Fragment 4b", Toast.LENGTH_SHORT).show();
                 ((MainActivity) getActivity()).setViewPager(4);
             }
@@ -139,6 +169,8 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 /* Use 'Intent' here since this is a activity you wish to navigate from*/
                 Intent intentCamVideo = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 startActivityForResult(intentCamVideo, VIDEO_FILE_REQUEST_CODE);
+                /*Attempting to try this out*/
+                setTargetFragment(mFragment4B1, VIDEO_FILE_REQUEST_CODE);
             }
 
         });
@@ -150,6 +182,8 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 /* Use 'Intent' here since this is a activity you wish to navigate from*/
                 Intent intentCamImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intentCamImage, CAMERA_FILE_REQUEST_CODE);
+                /*testing*/
+                setTargetFragment(mFragment4B1, CAMERA_FILE_REQUEST_CODE);
             }
         });
 
@@ -161,12 +195,19 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 Intent intentMediaUpload = new Intent(Intent.ACTION_GET_CONTENT);
                 intentMediaUpload.setType("image/*");
                 startActivityForResult(intentMediaUpload, PICK_FILE_REQUEST_CODE);
+                /*testng*/
+                setTargetFragment(mFragment4B1, CAMERA_FILE_REQUEST_CODE);
+
+
             }
         });
 
         return view;
 
     }
+
+    Fragment mFragment4B1 = new Fragment4_B1();
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -178,7 +219,12 @@ public class Fragment1 extends android.support.v4.app.Fragment {
             Log.d(Tag, "onActivityResult image uri: " + selectedImageUri);
 
             //Send the uri to PostFragment or Posting page/area
+            if (mOnPhotoSelectedLister != null)
             mOnPhotoSelectedLister.getImagePath(selectedImageUri);
+           // fragmentx.setTargetFragment(this, requestCode);
+            //      Bitmap mBitmapView = (Bitmap) <unknown>.findViewById(R.id.bmThumbnail);
+            /*or try setting here*/  //setTargetFragment(fragmentx,PICK_FILE_REQUEST_CODE);
+
         }
 
         /* Results when taking a new photo/image from Camera*/
@@ -188,8 +234,15 @@ public class Fragment1 extends android.support.v4.app.Fragment {
             bitmapimage = (Bitmap) data.getExtras().get("data");
 
             //Send the bitmapimage to PostFragment or Posting page/area
+           if (mOnPhotoSelectedLister != null)
             mOnPhotoSelectedLister.getImageBitmap(bitmapimage);
+          //  fragmentx.setTargetFragment(this, requestCode);
+            /*or try setting here*/ // setTargetFragment(fragmentx,CAMERA_FILE_REQUEST_CODE);
 
+            //  ImageView mImageView = (ImageView)
+            //bitmapimage = (Bitmap) view4b1.findViewById(R.id.bmThumbnail);
+
+            /* Or..try sending Bitmap to proper referenced object as mentinoed in stackoverflow*/
         }
 
         /* Results when taking a new video from Camera, filled in presumptions based on Android documentation*/
@@ -200,29 +253,41 @@ public class Fragment1 extends android.support.v4.app.Fragment {
             Uri videoUri = data.getData();
             mVideoview.setVideoURI(videoUri);
             Log.d(Tag, "onActivity Result: done taking new video");
-
             //Send the videoUri to PostFragment or Posting page/area
+            if (mOnVideoSelectedLister != null)
             mOnVideoSelectedLister.getVideopath(videoUri);
+            /*or try setting here*/ //  setTargetFragment(fragmentx,CAMERA_FILE_REQUEST_CODE);
+
+
+            // VideoView videoView = (VideoView) mVideoview.findViewById(R.id.videoView2);
+
 
         }
     }
 
+
+    /*Below is referencing Selecting an Image for Uploading - Androids Classifieds App*/
     @Override
     public void onAttach(Context context) {
         try {
-            mOnPhotoSelectedLister = (OnPhotoSelectedLister) getActivity();
+            mOnPhotoSelectedLister = (OnPhotoSelectedLister) getTargetFragment();
+            mOnVideoSelectedLister = (OnVideoSelectedLister) getTargetFragment();
+            Log.d(Tag, "Checking" + mOnPhotoSelectedLister + mOnVideoSelectedLister);
+
         } catch (ClassCastException e) {
             Log.e(Tag, "OnAttach: ClassCastException: " + e.getMessage());
         }
-         {
-
+        {
 
         }
 
         super.onAttach(context);
+
+        /* just testing stuff */
+
+        // https://stackoverflow.com/questions/10436120/failure-saving-state-target-not-in-fragment-manager-settargetfragment?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+
     }
 
 }
-
-
 

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+    <item
+        android:id="@+id/ic_current_listings"
+        android:icon="@drawable/ic_view_listings_14dp"
+        android:title="@string/current_listings"/>
+
+    <item
+        android:id="@+id/ic_find_contractor"
+        android:icon="@drawable/ic_person_14dp"
+        android:title="@string/find_contractor"/>
+
+    <item
+        android:id="@+id/ic_chat"
+        android:icon="@drawable/ic_message_black_14dp"
+        android:title="@string/chat"/>
+
+    <item
+        android:id="@+id/ic_settings"
+        android:icon="@drawable/ic_settings_icon_14dp"
+        android:title="@string/settings"/>
+
+
+
+
+
+
+
+</menu>

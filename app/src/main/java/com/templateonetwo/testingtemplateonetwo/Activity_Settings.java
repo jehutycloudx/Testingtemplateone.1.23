@@ -15,8 +15,11 @@ public class Activity_Settings extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_settings);
-
         TextView settings_title = (TextView) findViewById(R.id.activityTitle_Settings);
+
+
+/////////////////////////////*Bottom Navigation Begin*/////////////////////////////////////////////////////
+
 
         /*code below is to specifically disable shiftmode on bottom nav bar*/
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavView_Bar);
@@ -64,6 +67,10 @@ public class Activity_Settings extends AppCompatActivity {
                 return false;
             }
         });
+
+/////////////////////////////////////*Bottom Navigation Bar end*/////////////////////////////////////////////////////
+
+
 
     }
 }

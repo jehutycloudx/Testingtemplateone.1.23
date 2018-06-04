@@ -26,8 +26,9 @@
     <string name="go_to_fragment_4">Go to Fragment 4a1</string>
     <string name="welcome_to_fragment_4">Welcome to Fragment 4a1</string>
     <string name="back_to_media_select">Back</string>
-    <string name="description_field">Description (optional)</string>
-    <string name="project_title_optional">Project Title (optional)</string>
+    <string name="description_field">(optional)</string>
+    <string name="project_title_optional">(optional)</string>
     <string name="category_optional">Category (optional)</string>
     <string name="go_to_fragment_4b">Go to Fragment 4b1</string>
+    <string name="Time">DateTime</string>
 </resources>

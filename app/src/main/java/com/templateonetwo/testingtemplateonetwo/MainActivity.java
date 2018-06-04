@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+        /* each of these correspond to a number i.e. '0','1', '2', when referencing fragments */
     private void setupViewPager(ViewPager viewPager) {
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Fragment1(), "Fragment1");
@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Fragment3(), "Fragment3");
         adapter.addFragment(new Fragment4_A1(), "Fragment4_A1");
         adapter.addFragment(new Fragment4_B1(), "Fragment4_B1");
+        adapter.addFragment(new Fragment4_B2(), "Fragment4_B2");
         viewPager.setAdapter(adapter);
     }
 
