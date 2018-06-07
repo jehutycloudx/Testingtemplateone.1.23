@@ -3,6 +3,8 @@ package com.templateonetwo.testingtemplateonetwo;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -63,6 +65,16 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
         mPlayButton = (Button) view.findViewById(R.id.btnReplay);
         result_video = (VideoView) view.findViewById(R.id.videoView2);
         bitmapthumbnail = (ImageView) view.findViewById(R.id.bmThumbnail);
+        Fragment1.OnPhotoSelectedLister onPhotoSelectedLister=(Fragment1.OnPhotoSelectedLister)getActivity();
+        Fragment1.OnVideoSelectedLister onVideoSelectedLister=(Fragment1.OnVideoSelectedLister)getActivity();
+       if(onVideoSelectedLister.getVideopath()==null)
+        bitmapthumbnail.setImageBitmap(onPhotoSelectedLister.setImageBitmap());
+       else {
+           Uri uri=onVideoSelectedLister.getVideopath();
+           String path=uri.getPath();
+           Bitmap thumb = ThumbnailUtils.createVideoThumbnail(path, MediaStore.Images.Thumbnails.FULL_SCREEN_KIND);
+           bitmapthumbnail.setImageBitmap(thumb);
+       }
         Log.d(Tag, "onCreateView: started.");
 
         //Getting the instance of Spinner and applying OnItemSelectedListener on it
@@ -72,10 +84,6 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
         ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(this.getActivity(), android.R.layout.simple_spinner_item, CategoryNames);
         LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
         mSpinner.setAdapter(LTRadapter);
-
-
-
-
 
 
             /*For fragments, contextually, you are "in" an activity already, so you don't traditionally
@@ -107,9 +115,6 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
 
 
 
-
-
-
     public void setBitmapthumbnail(ImageView bitmapthumbnail) {
         this.bitmapthumbnail = bitmapthumbnail;
 
@@ -136,16 +141,7 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
 //    }
 
 
-    @Override
-    public void getVideopath(Uri data) {
 
-        Log.d(Tag, "setting video to imageview bitmapthumbnail");
-
-/* 1) attempt*/   result_video.setVideoURI(data);
-
-/* 2) attempt*/   //bitmapthumbnail = createVideoThumbnail(getString(getVideopath();)
-
-    }
 
     @Override
     public void getImagePath(Uri imagePath) {
@@ -155,6 +151,8 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
         mBitmap = null;
         mImageUri = imagePath;
        // setTargetFragment(this, 104);
+
+
     }
 
 
@@ -167,12 +165,34 @@ public class Fragment4_B1 extends android.support.v4.app.Fragment implements Fra
        mImageUri = null;
        mBitmap = bitmap;
 
+
+    }
+
+    @Override
+    public Uri setImagePath() {
+        return null;
+    }
+
+    @Override
+    public Bitmap setImageBitmap() {
+        return null;
+    }
+
+    @Override
+    public Uri getVideopath() {
+        return null;
+
+    }
+
+    @Override
+    public void setVideopath(Uri data) {
+
     }
 }
 
 
 
-/* extra junk code to test/play with
-        Bitmap bmThumbnail = createVideoThumbnail(String.valueOf(mOnVideoSelectedLister), MediaStore.Images.Thumbnails.MINI_KIND);
+/* extra junk code to test/play with*/
+// Bitmap bmThumbnail = createVideoThumbnail(String.valueOf(getVideopath()), MediaStore.Images.Thumbnails.MINI_KIND);
         /*   viewImage.setImageBitmap(bmThumbnail); */
 

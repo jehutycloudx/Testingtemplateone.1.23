@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,10 +39,15 @@ public class Fragment1 extends android.support.v4.app.Fragment {
         void getImagePath(Uri imagePath);
 
         void getImageBitmap(Bitmap bitmap);
+        Uri setImagePath();
+
+        Bitmap setImageBitmap();
+
     }
 
     public interface OnVideoSelectedLister {
-        void getVideopath(Uri data);  //?????? maybe video is data here?
+        Uri getVideopath();  //?????? maybe video is data here?
+        void setVideopath(Uri data);
     }
 
     OnPhotoSelectedLister mOnPhotoSelectedLister;  //*maybe there is a video version of this*//
@@ -69,8 +75,8 @@ public class Fragment1 extends android.support.v4.app.Fragment {
         super.onCreate(savedInstanceState);
 
         try {
-            mOnPhotoSelectedLister = (OnPhotoSelectedLister) getTargetFragment();
-            mOnVideoSelectedLister = (OnVideoSelectedLister) getTargetFragment();
+            mOnPhotoSelectedLister = (OnPhotoSelectedLister) getActivity();
+            mOnVideoSelectedLister = (OnVideoSelectedLister) getActivity();
             Log.d(Tag, "Checking2" + mOnPhotoSelectedLister + mOnVideoSelectedLister);
 
         } catch (ClassCastException e) {
@@ -170,7 +176,8 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 Intent intentCamVideo = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
                 startActivityForResult(intentCamVideo, VIDEO_FILE_REQUEST_CODE);
                 /*Attempting to try this out*/
-                setTargetFragment(mFragment4B1, VIDEO_FILE_REQUEST_CODE);
+               // setTargetFragment(new Fragment4_B1(), VIDEO_FILE_REQUEST_CODE);
+
             }
 
         });
@@ -183,7 +190,11 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 Intent intentCamImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intentCamImage, CAMERA_FILE_REQUEST_CODE);
                 /*testing*/
-                setTargetFragment(mFragment4B1, CAMERA_FILE_REQUEST_CODE);
+
+                //setTargetFragment(new Fragment4_B1(), 5); /*based on video, the integer here doesnt not have to equal the CAMERA_FILE_REQUEST_CODE, it can be a random integer as you are sending this data to next frag*/
+
+                //     setTargetFragment(null, 5);
+
             }
         });
 
@@ -196,7 +207,9 @@ public class Fragment1 extends android.support.v4.app.Fragment {
                 intentMediaUpload.setType("image/*");
                 startActivityForResult(intentMediaUpload, PICK_FILE_REQUEST_CODE);
                 /*testng*/
-                setTargetFragment(mFragment4B1, CAMERA_FILE_REQUEST_CODE);
+            //    setTargetFragment(new Fragment4_B1(), CAMERA_FILE_REQUEST_CODE);
+            //    setTargetFragment(null, -1);
+                setTargetFragment(new Fragment4_B1(), 33);
 
 
             }
@@ -207,6 +220,7 @@ public class Fragment1 extends android.support.v4.app.Fragment {
     }
 
     Fragment mFragment4B1 = new Fragment4_B1();
+
 
 
     @Override
@@ -232,6 +246,10 @@ public class Fragment1 extends android.support.v4.app.Fragment {
             Log.d(Tag, "onActivity Result: done taking new photo");
             Bitmap bitmapimage;
             bitmapimage = (Bitmap) data.getExtras().get("data");
+            mOnPhotoSelectedLister.getImageBitmap(bitmapimage);
+            mOnVideoSelectedLister.setVideopath(null);
+            MainActivity mainActivity=(MainActivity)getActivity();
+            mainActivity.gotoFragment(4);
 
             //Send the bitmapimage to PostFragment or Posting page/area
            if (mOnPhotoSelectedLister != null)
@@ -251,11 +269,15 @@ public class Fragment1 extends android.support.v4.app.Fragment {
         //start 'Camera Storage Permission Lecture'
         else if (requestCode == VIDEO_FILE_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             Uri videoUri = data.getData();
-            mVideoview.setVideoURI(videoUri);
+//            mVideoview.setVideoURI(videoUri);
+            mOnVideoSelectedLister.setVideopath(videoUri);
+            MainActivity mainActivity=(MainActivity)getActivity();
+            mainActivity.gotoFragment(4);
+
             Log.d(Tag, "onActivity Result: done taking new video");
             //Send the videoUri to PostFragment or Posting page/area
             if (mOnVideoSelectedLister != null)
-            mOnVideoSelectedLister.getVideopath(videoUri);
+            mOnVideoSelectedLister.setVideopath(videoUri);
             /*or try setting here*/ //  setTargetFragment(fragmentx,CAMERA_FILE_REQUEST_CODE);
 
 

@@ -3,10 +3,13 @@ package com.templateonetwo.testingtemplateonetwo;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,10 +18,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-public class MainActivity extends AppCompatActivity {
+public  class MainActivity extends AppCompatActivity implements Fragment1.OnPhotoSelectedLister,Fragment1.OnVideoSelectedLister {
 
     private static final String TAG = "MainActivity";
     private static final int REQUEST_CODE_P = 123;
+    Uri uri;
+    Bitmap mBitmap;
 
     private SectionsStatePagerAdapter mSectionsStatePagerAdapter;
     private ViewPager mViewPager; /*created in activity main XML all the way at the bottom*/
@@ -102,7 +107,13 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFragment(new Fragment4_A1(), "Fragment4_A1");
         adapter.addFragment(new Fragment4_B1(), "Fragment4_B1");
         adapter.addFragment(new Fragment4_B2(), "Fragment4_B2");
+        adapter.addFragment(new Fragment4_B3(), "Fragment4_B3");
         viewPager.setAdapter(adapter);
+    }
+
+    public void gotoFragment(int i)
+    {
+       mViewPager.setCurrentItem(i);
     }
 
     public void setViewPager(int fragmentNumber) {
@@ -132,9 +143,44 @@ public class MainActivity extends AppCompatActivity {
         'onRequestPermissionResult...'*/
     }
 
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
      verifyPermissions();
+
+    }
+
+
+    /////*Getting image and video paths below *///////
+
+    @Override
+    public void getImagePath(Uri imagePath) {
+        uri=imagePath;
+    }
+
+    @Override
+    public void getImageBitmap(Bitmap bitmap) {
+       mBitmap=bitmap;
+    }
+
+    @Override
+    public Uri setImagePath() {
+        return uri;
+    }
+
+    @Override
+    public Bitmap setImageBitmap() {
+        return mBitmap;
+    }
+
+    @Override
+    public Uri getVideopath() {
+        return uri;
+    }
+
+    @Override
+    public void setVideopath(Uri data) {
+        uri=data;
 
     }
 }
